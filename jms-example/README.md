@@ -14,17 +14,22 @@ It uses a symetric topology (live and backup on both nodes) and a shared file-sy
 *Note* that you have to set system properties jboss.node.name and other.node.name for the configuration to work.
 With the OBJ-JBoss-Tools, I set:
 
------- .cl1rc --------
+Node 1: .cl1rc
+--------------
+```
 export JBOSS_HOME=$HOME/jboss/jboss-eap-cl1
 export JBossPackage=$HOME/Downloads/jboss-eap-6.1.1.zip
 PORT_OFFSET=100
 OTHER=cl2
 JBOSS_OPTS="-Djboss.bind.address=192.168.105.133 -Dother.node.name=$OTHER"
+```
 
-
------- .cl2rc --------
+Node 2: .cl2rc
+--------------
+```
 export JBOSS_HOME=$HOME/jboss/jboss-eap-cl2
 export JBossPackage=$HOME/Downloads/jboss-eap-6.1.1.zip
 PORT_OFFSET=200
 OTHER=cl1
 JBOSS_OPTS="-Djboss.bind.address=192.168.105.133 -Dother.node.name=$OTHER"
+```
