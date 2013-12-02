@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,6 +27,9 @@ import at.objectbay.tests.ws.soap.Person;
 public class Library {
 
     private static final Logger log = Logger.getLogger(Library.class);
+
+	@EJB
+	private ServiceBean service;
 
     private static Map<String, Book> books = new LinkedHashMap<String, Book>();
     static {
@@ -85,9 +89,16 @@ public class Library {
     }
 
 	@GET
-	@Path("/person")
-	public Person getPerson() {
+	@Path("/directws")
+	public Person getDirectWs() {
 		log.infof("getPerson");
 		return new FabrikBeanService().getPort(FabrikBean.class).getPerson();
+	}
+
+	@GET
+	@Path("/ejbws")
+	public Person getEjbWs() {
+		log.infof("getEjbWs");
+		return service.getPerson();
 	}
 }

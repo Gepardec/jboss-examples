@@ -9,7 +9,7 @@
 
   <parent>
     <groupId>at.objectbay.tests.ws</groupId>
-    <artifactId>ws-tests</artifactId>
+    <artifactId>webservice-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 

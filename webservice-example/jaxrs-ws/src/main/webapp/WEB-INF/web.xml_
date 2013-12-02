@@ -11,4 +11,8 @@
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>at.objectbay.tests.ws.jaxrs.PerfServlet</servlet-name>
+        <url-pattern>/ejbws</url-pattern>
+    </servlet-mapping>
 </web-app>
