@@ -1326,7 +1326,7 @@
 	</binding>
 	<service name="SEPartnerLesenLangService">
 		<port name="PartnerLesenLangPort" binding="tns:PartnerLesenLangPortBinding">
-			<soap:address location="REPLACE_WITH_ACTUAL_URL" />
+			<soap:address location="http://localhost:8080/soap-ws-1.0.0-SNAPSHOT/PartnerLesenLangServices" />
 		</port>
 	</service>
 </definitions>

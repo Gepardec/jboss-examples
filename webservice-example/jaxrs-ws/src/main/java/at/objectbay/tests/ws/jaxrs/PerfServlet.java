@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import at.objectbay.tests.ws.soap.Person;
-
 @WebServlet(urlPatterns = "/ejbws")
 public class PerfServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +30,13 @@ public class PerfServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			// I don't care
 		}
+		int count = 0;
+		try {
+			count = Integer.parseInt(request.getParameter("count"));
+		} catch (NumberFormatException e) {
+			// I don't care
+		}
+		String function = request.getParameter("function");
 
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>Wait</title></head><body>");
@@ -40,7 +45,16 @@ public class PerfServlet extends HttpServlet {
 
 		out.println("Rufe <a href=\"ejbws?time=" + time + "\">getPerson</a> "
 				+ time + "ms<br/>");
-		Person p = svc.getPerson();
+		// Person p = svc.getPerson();
+		String p = "";
+		while (count-- > 0) {
+			if ("cached".equals(function)) {
+				p = svc.getPartnerChached();
+			} else {
+				p = svc.getPartner();
+			}
+		}
+		out.println("Got: " + p);
 
 		out.println("End<br/>");
 		out.println("</body>");
