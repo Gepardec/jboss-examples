@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 public class PerfServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@EJB
+//	@EJB
+	@Inject
 	ServiceBean svc;
+
+    static private int zaehler;
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,7 +33,7 @@ public class PerfServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			// I don't care
 		}
-		int count = 0;
+		int count = 1;
 		try {
 			count = Integer.parseInt(request.getParameter("count"));
 		} catch (NumberFormatException e) {
@@ -43,15 +46,23 @@ public class PerfServlet extends HttpServlet {
 		out.println("Start<br/>");
 		out.println(new Date().toString() + "<br/>");
 
-		out.println("Rufe <a href=\"ejbws?time=" + time + "\">getPerson</a> "
+		out.println("Rufe <a href=\"ejbws?time=" + time + "&count="+count+"\">getPerson</a> "
 				+ time + "ms<br/>");
 		// Person p = svc.getPerson();
-		String p = "";
+		String p = "";		
+		String name = "user" + zaehler++;
+		if ( zaehler > 99 ) zaehler = 1;
 		while (count-- > 0) {
 			if ("cached".equals(function)) {
-				p = svc.getPartnerChached();
+				p = svc.getPartnerChached(name);
 			} else {
-				p = svc.getPartner();
+				p = svc.getPartner(name);
+			}
+			if ( name.equals(p) ){
+				p = "OK " + name;
+			}
+			else{
+				throw new IllegalStateException("Falscher Returnwert: " + p+" statt " +name);
 			}
 		}
 		out.println("Got: " + p);
