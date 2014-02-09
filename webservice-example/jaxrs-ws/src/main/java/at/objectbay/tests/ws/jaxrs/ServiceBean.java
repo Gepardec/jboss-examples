@@ -18,9 +18,6 @@ import at.objectbay.schema.test.svc.customerread_6_0.CustomerRead;
 import at.objectbay.schema.test.svc.customerread_6_0.DtoCustomerLELI;
 import at.objectbay.schema.test.svc.customerread_6_0.DtoCustomerLELO;
 import at.objectbay.schema.test.svc.customerread_6_0.SECustomerReadService;
-import at.objectbay.tests.ws.soap.FabrikBean;
-import at.objectbay.tests.ws.soap.FabrikBeanService;
-import at.objectbay.tests.ws.soap.Person;
 
 @Stateless
 // @ApplicationScoped
@@ -28,20 +25,12 @@ public class ServiceBean {
 
 	private static final Logger log = Logger.getLogger(ServiceBean.class);
 	private static URL WSDL_LOC = ServiceBean.class.getResource("/PersonenService.wsdl");
-	private static String WSDL_STRING = WSDL_LOC.toString();
 
-	static{
-		log.infof("WSDL_STRING=%s", WSDL_STRING);
-	}
 
 	private CustomerRead port;
 
 	@WebServiceRef(value=SECustomerReadService.class, wsdlLocation="/WEB-INF/PersonenService.wsdl")
 	private CustomerRead injectedPort;
-
-	public Person getPerson() {
-		return new FabrikBeanService().getPort(FabrikBean.class).getPerson();
-	}
 
 	public String getCustomer(String name) {
 		DtoCustomerLELI search = new DtoCustomerLELI();
@@ -91,10 +80,7 @@ public class ServiceBean {
 
 		// client side:
 		bp.getRequestContext().put(Header.HEADER_LIST, headers);
-		/*
-		 * try { Thread.sleep(100); } catch (InterruptedException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
+
 	}
 
 	private CustomerRead getPort() {
