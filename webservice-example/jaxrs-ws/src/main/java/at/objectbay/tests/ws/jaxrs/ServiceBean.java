@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.xml.bind.JAXBException;
 import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
+import javax.xml.ws.WebServiceRef;
 
 import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
@@ -27,9 +28,16 @@ public class ServiceBean {
 
 	private static final Logger log = Logger.getLogger(ServiceBean.class);
 	private static URL WSDL_LOC = ServiceBean.class.getResource("/PersonenService.wsdl");
+	private static String WSDL_STRING = WSDL_LOC.toString();
 
+	static{
+		log.infof("WSDL_STRING=%s", WSDL_STRING);
+	}
 
 	private CustomerRead port;
+
+	@WebServiceRef(value=SECustomerReadService.class, wsdlLocation="/WEB-INF/PersonenService.wsdl")
+	private CustomerRead injectedPort;
 
 	public Person getPerson() {
 		return new FabrikBeanService().getPort(FabrikBean.class).getPerson();
@@ -50,6 +58,16 @@ public class ServiceBean {
 		search.setBeziehungsartShort(name);
 		authenticate(getPort(), name, name);
 		DtoCustomerLELO dto = getPort().customerRead(search);
+		return dto.getDtoAnschriftShort().getOrt();
+	}
+	
+	public String getCustomerInjected(String name) {
+		if ( null == injectedPort ){
+			throw new NullPointerException("injectedPort is null!");
+		}
+		DtoCustomerLELI search = new DtoCustomerLELI();
+		authenticate(injectedPort, name, name);
+		DtoCustomerLELO dto = injectedPort.customerRead(search);
 		return dto.getDtoAnschriftShort().getOrt();
 	}
 

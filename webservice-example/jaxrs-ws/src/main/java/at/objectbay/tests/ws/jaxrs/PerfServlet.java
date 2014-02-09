@@ -55,14 +55,16 @@ public class PerfServlet extends HttpServlet {
 		while (count-- > 0) {
 			if ("cached".equals(function)) {
 				p = svc.getCustomerChached(name);
+			} else if ("injected".equals(function)) {
+				p = svc.getCustomerInjected(name);
 			} else {
 				p = svc.getCustomer(name);
 			}
-			if ( name.equals(p) ){
+			if (name.equals(p)) {
 				p = "OK " + name;
-			}
-			else{
-				throw new IllegalStateException("Falscher Returnwert: " + p+" statt " +name);
+			} else {
+				throw new IllegalStateException("Falscher Returnwert: " + p
+						+ " statt " + name);
 			}
 		}
 		out.println("Got: " + p);

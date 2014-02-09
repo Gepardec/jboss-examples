@@ -18,8 +18,9 @@ Optionen:
     c n: Anzahl der Bean-Aufrufe pro Servlet-Aufruf
     p: Aufrufe parallel
     f funktion: Funktion im Servlet:
-		normal 
+		normal  (default)
 		cached
+		injected
     h: Diese Hilfeseite
 
 Ruft Servlet für Webeservicetests auf.
