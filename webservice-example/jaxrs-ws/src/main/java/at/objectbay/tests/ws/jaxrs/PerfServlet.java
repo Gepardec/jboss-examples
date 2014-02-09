@@ -54,9 +54,9 @@ public class PerfServlet extends HttpServlet {
 		if ( zaehler > 99 ) zaehler = 1;
 		while (count-- > 0) {
 			if ("cached".equals(function)) {
-				p = svc.getPartnerChached(name);
+				p = svc.getCustomerChached(name);
 			} else {
-				p = svc.getPartner(name);
+				p = svc.getCustomer(name);
 			}
 			if ( name.equals(p) ){
 				p = "OK " + name;

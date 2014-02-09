@@ -11,44 +11,44 @@ import javax.xml.ws.BindingProvider;
 import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 
+import at.objectbay.schema.test.svc.customerread_6_0.CustomerRead;
+import at.objectbay.schema.test.svc.customerread_6_0.DtoCustomerLELI;
+import at.objectbay.schema.test.svc.customerread_6_0.DtoCustomerLELO;
+import at.objectbay.schema.test.svc.customerread_6_0.SECustomerReadService;
 import at.objectbay.tests.ws.soap.FabrikBean;
 import at.objectbay.tests.ws.soap.FabrikBeanService;
 import at.objectbay.tests.ws.soap.Person;
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.DtoPartnerLELI;
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.DtoPartnerLELO;
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.PartnerLesenLang;
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.SEPartnerLesenLangService;
 
 @Stateless
 //@ApplicationScoped
 public class ServiceBean {
 
-	private PartnerLesenLang port;
+	private CustomerRead port;
 
 	public Person getPerson() {
 		return new FabrikBeanService().getPort(FabrikBean.class).getPerson();
 	}
 
-	public String getPartner(String name) {
-		DtoPartnerLELI search = new DtoPartnerLELI();
-		search.setBeziehungsartKurz(name);
-		port = new SEPartnerLesenLangService()
-		.getPartnerLesenLangPort();
-		authenticate(port, name, name);
-		DtoPartnerLELO dto = port.partnerLesenLang(search );
-		return dto.getDtoAnschriftKurz().getOrt();
+	public String getCustomer(String name) {
+		DtoCustomerLELI search = new DtoCustomerLELI();
+		search.setBeziehungsartShort(name);
+		CustomerRead myport = new SECustomerReadService()
+		.getCustomerReadPort();
+		authenticate(myport, name, name);
+		DtoCustomerLELO dto = myport.customerRead(search );
+		return dto.getDtoAnschriftShort().getOrt();
 	}
 
-	public String getPartnerChached(String name) {
-		DtoPartnerLELI search = new DtoPartnerLELI();
-		search.setBeziehungsartKurz(name);
+	public String getCustomerChached(String name) {
+		DtoCustomerLELI search = new DtoCustomerLELI();
+		search.setBeziehungsartShort(name);
 		authenticate(getPort(), name, name);
-		DtoPartnerLELO dto = getPort().partnerLesenLang(search);
-		return dto.getDtoAnschriftKurz().getOrt();
+		DtoCustomerLELO dto = getPort().customerRead(search);
+		return dto.getDtoAnschriftShort().getOrt();
 	}
 
-	private void authenticate(PartnerLesenLang port, String name, String password) {
-        BindingProvider bp = (BindingProvider)getPort();
+	private void authenticate(CustomerRead wsPort, String name, String password) {
+        BindingProvider bp = (BindingProvider)wsPort;
         bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, name);
         bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
       
@@ -77,10 +77,10 @@ public class ServiceBean {
 */
 	}
 
-	private PartnerLesenLang getPort() {
+	private CustomerRead getPort() {
 
 		if (null == port) {
-			port = new SEPartnerLesenLangService().getPartnerLesenLangPort();
+			port = new SECustomerReadService().getCustomerReadPort();
 		}
 		return port;
 	}

@@ -15,28 +15,32 @@ import org.apache.cxf.message.Message;
 import org.jboss.logging.Logger;
 import org.w3c.dom.Element;
 
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.DtoAnschriftKurz;
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.DtoPartnerLELI;
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.DtoPartnerLELO;
-import at.sozialversicherung.schema.zpv.ibs.partnerlesenlang_6_0.PartnerLesenLang;
+import at.objectbay.schema.test.svc.customerread_6_0.CustomerRead;
+import at.objectbay.schema.test.svc.customerread_6_0.DtoAnschriftShort;
+import at.objectbay.schema.test.svc.customerread_6_0.DtoCustomerLELI;
+import at.objectbay.schema.test.svc.customerread_6_0.DtoCustomerLELO;
+
+
+
+
 
 @Stateless
 @WebService
-public class PartnerLesenLangServices implements PartnerLesenLang {
+public class CustomerReadServices implements CustomerRead {
 
-    private static final Logger log = Logger.getLogger(PartnerLesenLangServices.class);
+    private static final Logger log = Logger.getLogger(CustomerReadServices.class);
 
     @Resource
 	WebServiceContext context;
 
 	@Override
-	public DtoPartnerLELO partnerLesenLang(DtoPartnerLELI dtoPartnerLELI) {
+	public DtoCustomerLELO customerRead(DtoCustomerLELI dtoCustomerLELI) {
 		if ( context.getMessageContext() == null ){
-			System.out.println("Null MessageContext in partnerLesenLang!");
+			log.error("Null MessageContext in customerRead!");
 		}
 		String headerUser = getHeader("dummy");
-		DtoPartnerLELO partner = new DtoPartnerLELO();
-		DtoAnschriftKurz anschrift = new DtoAnschriftKurz();
+		DtoCustomerLELO customer = new DtoCustomerLELO();
+		DtoAnschriftShort anschrift = new DtoAnschriftShort();
 		String user = null;
 		if ( null != context.getUserPrincipal()){
 			user = context.getUserPrincipal().getName();
@@ -47,29 +51,17 @@ public class PartnerLesenLangServices implements PartnerLesenLang {
 			log.debugf("User, use headerUser: %s", user);
 		}
 		else{
-			System.out.println("Null getUserPrincipal in partnerLesenLang!");
-			user = dtoPartnerLELI.getBeziehungsartKurz();
-			log.debugf("User, use dtoPartnerLELI.getBeziehungsartKurz: %s", user);
+			log.info("Null getUserPrincipal() in customerRead!");
+			user = dtoCustomerLELI.getBeziehungsartShort();
+			log.debugf("User, use dtoCustomerLELI.getBeziehungsartKurz: %s", user);
 		}
 		anschrift.setOrt(user);			
-		partner.setDtoAnschriftKurz(anschrift);
-		/*
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		return partner;
+		customer.setDtoAnschriftShort(anschrift);
+
+		return customer;
 	}
-    @Resource  
-    private void setWSContext(WebServiceContext inContext)  
-    {  
-        System.out.println("***** Got the WS context: " + inContext);  
-        context = inContext;  
-    }  
-    private List<Header> getHeaders() {
+
+	private List<Header> getHeaders() {
         MessageContext messageContext = context.getMessageContext();
         if (messageContext == null || !(messageContext instanceof WrappedMessageContext)) {
             return null;
