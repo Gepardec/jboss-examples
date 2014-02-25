@@ -94,11 +94,4 @@ public class Library {
 		log.infof("getPerson");
 		return new FabrikBeanService().getPort(FabrikBean.class).getPerson();
 	}
-
-	@GET
-	@Path("/ejbws")
-	public Person getEjbWs() {
-		log.infof("getEjbWs");
-		return service.getPerson();
-	}
 }
