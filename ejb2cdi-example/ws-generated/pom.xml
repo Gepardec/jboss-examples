@@ -26,7 +26,6 @@
       <version>1.1.0.GA</version>
       <configuration>
         <wsdls>
-          <wsdl>${basedir}/src/main/wsdl/FabrikBean.wsdl</wsdl>
           <wsdl>${basedir}/src/main/wsdl/PersonenService.wsdl</wsdl>
         </wsdls>
       </configuration>
