@@ -27,5 +27,6 @@ Setup for the test
 	curl http://localhost:8080/remote-ejb-client-0.1.0-SNAPSHOT/ClientServlet
 
 You should get something like
-Session ID: vAKtsJ0Ff0YGMPlY5YNRA7bB
-Service returned SESSION ID: VAKTSJ0FF0YGMPLY5YNRA7BB VALUE:NULL
+Session ID: gHlY9PXuc1ejKMZJv8OxEgDY
+Service1 returned SESSION ID: GHLY9PXUC1EJKMZJV8OXEGDY VALUE:NULL
+Service2 returned Hello World!!!!!

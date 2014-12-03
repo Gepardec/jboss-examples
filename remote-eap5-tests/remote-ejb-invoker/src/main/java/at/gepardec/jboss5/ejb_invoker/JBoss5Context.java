@@ -1,12 +1,14 @@
 package at.gepardec.jboss5.ejb_invoker;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.rmi.PortableRemoteObject;
 
 public class JBoss5Context {
 
@@ -20,13 +22,12 @@ public class JBoss5Context {
 		this.password = password;
 	}
 
-
-	public <T> T lookup(String beanJNDI, Class <T> interfaceClass) {
+	public <T> T lookup(String beanJNDI, Class<T> interfaceClass) {
 
 		Properties jndiProperties = getProperties();
 
 		Object bean;
-		
+
 		ClassLoader ctxCl = setContextClassloaderToLocal();
 		try {
 			final Context context = new InitialContext(jndiProperties);
@@ -44,6 +45,43 @@ public class JBoss5Context {
 
 	}
 
+	public <T,H> T lookupEjb2(String beanJNDI, Class<T> interfaceClass, Class<H> homeInterface) {
+
+		Properties jndiProperties = getProperties();
+
+		Object bean;
+
+		ClassLoader ctxCl = setContextClassloaderToLocal();
+		try {
+			final Context context = new InitialContext(jndiProperties);
+			Object obj = context.lookup(beanJNDI);
+		    Object home =
+			        PortableRemoteObject.narrow(obj,homeInterface);
+
+			   bean =   home.getClass().getMethod("create", (Class[]) null).invoke(home, (Object[]) null);
+
+			context.close();
+		} catch (NamingException e) {
+			throw new RuntimeException(e);
+		} catch (NoSuchMethodException e) {
+			throw new RuntimeException(e);
+		} catch (SecurityException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalArgumentException e) {
+			throw new RuntimeException(e);
+		} catch (InvocationTargetException e) {
+			throw new RuntimeException(e);
+		} finally {
+			resetContextClassloader(ctxCl);
+		}
+
+		InvocationHandler handler = new JBoss5InvocationHandler(bean);
+		return interfaceClass.cast(Proxy.newProxyInstance(ctxCl,
+				new Class[] { interfaceClass }, handler));
+
+	}
 
 	static void resetContextClassloader(ClassLoader ctxCl) {
 		Thread.currentThread().setContextClassLoader(ctxCl);

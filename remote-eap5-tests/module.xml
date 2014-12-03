@@ -49,7 +49,6 @@
     <resource-root path='jboss-integration.jar' />
     <resource-root path='jboss-j2se.jar' />
     <resource-root path='jboss-jaspi-api.jar' />
-    <resource-root path='jboss-javaee.jar' />
     <resource-root path='jbossjmx-ant.jar' />
     <resource-root path='jboss-jsr77-client.jar' />
     <resource-root path='jbossjts-integration.jar' />
@@ -101,6 +100,7 @@
     <resource-root path='xmlsec.jar' />
   </resources>
   <dependencies>
-    <module name="javax.api"/>
+    <module name="javax.ejb.api"/>
+    <module name="javax.security.jacc.api"/>
   </dependencies>
 </module>

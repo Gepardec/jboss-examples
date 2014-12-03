@@ -9,6 +9,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>remote-ejb</module>
+		<module>remote-ejb2</module>
 		<module>remote-ejb-invoker</module>
 		<module>remote-ejb-client</module>
 		<module>modules</module>
