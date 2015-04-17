@@ -35,7 +35,7 @@ public class MyRestInvoker {
 
 		ClientExecutor executor = new URLConnectionClientExecutor();
 		ClientRequest request = new ClientRequest(
-				"invmhttp://someproxyname/jaxrs-ws-1.0.0-SNAPSHOT/rest/book/002",
+				"invmhttp://someproxyname/books/rest/book/002",
 				executor);
 
 		try {

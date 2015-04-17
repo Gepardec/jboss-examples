@@ -4,7 +4,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<name>JAX-RS Server</name>
-	<artifactId>jaxrs-ws</artifactId>
+	<artifactId>jaxrs-ws-invm</artifactId>
 	<packaging>war</packaging>
 
 	<parent>
