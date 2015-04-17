@@ -16,6 +16,36 @@
 		</transportConnectors>
 	</broker>
 
+	<bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+		<property name="environment">
+			<props>
+				<prop key="java.naming.factory.initial">org.jboss.naming.remote.client.InitialContextFactory</prop>
+				<prop key="java.naming.provider.url">remote://localhost:4447</prop>
+				<prop key="java.naming.security.principal">guest</prop>
+				<prop key="java.naming.security.credentials">guest@123</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="jmsQueueConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiTemplate">
+			<ref bean="jndiTemplate" />
+		</property>
+		<property name="jndiName">
+			<value>java:jms/RemoteConnectionFactory</value>
+		</property>
+	</bean>
+
+	<bean id="authenticatedConnectionFactory"
+		class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
+		<property name="targetConnectionFactory" ref="jmsQueueConnectionFactory" />
+		<property name="username" value="guest" />
+		<property name="password" value="guest@123" />
+	</bean>
+	
+	<bean name="jms" class="org.apache.camel.component.jms.JmsComponent">
+		<property name="connectionFactory" ref="authenticatedConnectionFactory" />
+	</bean>
+
 	<!-- Lets connect the Camel ActiveMQ component to the embedded broker. See 
 		http://camel.apache.org/activemq.html for more information. -->
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
@@ -30,7 +60,7 @@
 		<package>com.gepardec.jbossexamples.camelhornetq</package>
 		<route>
 			<from uri="file:src/data?noop=true" />
-			<to uri="activemq:personnel.records" />
+			<to uri="jms:queue:sample" />
 		</route>
 	</camelContext>
 </beans>
