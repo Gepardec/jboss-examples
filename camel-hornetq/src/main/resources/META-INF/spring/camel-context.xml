@@ -35,15 +35,23 @@
 		</property>
 	</bean>
 
-	<bean id="authenticatedConnectionFactory"
+	<bean id="connectionFactory"
 		class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
 		<property name="targetConnectionFactory" ref="jmsQueueConnectionFactory" />
 		<property name="username" value="guest" />
 		<property name="password" value="guest@123" />
 	</bean>
-	
+
+	<bean id="caching.connectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<property name="targetConnectionFactory" ref="connectionFactory" />
+		<property name="sessionCacheSize" value="10" />
+		<property name="cacheProducers" value="true" />
+		<property name="cacheConsumers" value="true" />
+	</bean>
+
 	<bean name="jms" class="org.apache.camel.component.jms.JmsComponent">
-		<property name="connectionFactory" ref="authenticatedConnectionFactory" />
+		<property name="connectionFactory" ref="caching.connectionFactory" />
 	</bean>
 
 	<!-- Lets connect the Camel ActiveMQ component to the embedded broker. See 

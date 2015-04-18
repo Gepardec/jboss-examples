@@ -1,0 +1,1 @@
+/subsystem=messaging/hornetq-server=default/:write-attribute(name=message-counter-enabled, value=true)
