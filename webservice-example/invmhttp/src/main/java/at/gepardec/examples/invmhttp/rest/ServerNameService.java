@@ -11,6 +11,6 @@ public class ServerNameService {
 	@GET
 	@Produces({ "application/json" })
 	public String ServerName() {
-		return "Server " + System.getProperty("server.name") + " ";
+		return "Server " + System.getProperty("jboss.node.name") + " ";
 	}
 }
