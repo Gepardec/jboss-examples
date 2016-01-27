@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/javaee_web_services_metadata_handler_2_0.xsd">
+	<handler-chain>
+		<protocol-bindings>##SOAP11_HTTP</protocol-bindings>
+		<!-- com.arjuna.mwlabs.wst11.at.remote.TransactionManagerImple wirft die com.arjuna.wst.UnknownTransactionException -->
+		<!-- http://grepcode.com/file/repo1.maven.org/maven2/org.jboss.narayana/jbosstxbridge/5.0.0.Final/org/jboss/jbossts/txbridge/inbound/JaxWSTxInboundBridgeHandler.java#JaxWSTxInboundBridgeHandler -->
+		<handler>
+			<handler-name>JaxWSTxInboundBridgeHandler</handler-name>
+			<handler-class>org.jboss.jbossts.txbridge.inbound.JaxWSTxInboundBridgeHandler</handler-class>
+		</handler>
+		<!-- http://grepcode.com/file/repository.jboss.org/nexus/content/repositories/releases/org.jboss.jbossts/jbossxts/4.16.4.Final/com/arjuna/mw/wst/service/JaxWSHeaderContextProcessor.java -->
+		<handler>
+			<handler-name>JaxWSHeaderContextProcessor</handler-name>
+			<handler-class>com.arjuna.mw.wst11.service.JaxWSHeaderContextProcessor</handler-class>
+		</handler>
+	</handler-chain>
+</handler-chains>

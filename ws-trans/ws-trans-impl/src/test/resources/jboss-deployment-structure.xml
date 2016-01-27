@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+    <deployment>
+        <dependencies>
+            <module name="org.jboss.xts" export="true"/>
+            <module name="org.jboss.jts" export="true"/>
+            <module name="org.jboss.jts.integration" export="true"/>
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>
