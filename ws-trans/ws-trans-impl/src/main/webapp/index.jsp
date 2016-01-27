@@ -8,6 +8,9 @@
 </head>
 
 <body>
-Use the Arquillian Test.
+Use the Arquillian Test or call
+<p>
+Rufe <a href="callws?count=5">callws?count=5</a>
+</p>
 </body>
 </html>

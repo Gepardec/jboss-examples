@@ -1,5 +1,7 @@
 package at.gepardec.demo.wstrans.impl;
 
+import static org.junit.Assert.*;
+
 import javax.ejb.EJB;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -38,8 +40,8 @@ public class TransWsBeanIT {
     	long start;
     	for ( int i=0; i<10; i++){
         	start = System.currentTimeMillis();
-    		ejbWrapper4TransWsBean.testCallTransWsOk();
-    		
+    		String response = ejbWrapper4TransWsBean.testCallTransWsOk();
+    		assertEquals("Hello,Hello", response);
     		timer.info("testCallOk Time: " + (System.currentTimeMillis() - start) + "ms");
     	}
     }

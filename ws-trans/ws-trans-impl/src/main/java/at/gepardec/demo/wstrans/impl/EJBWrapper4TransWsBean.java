@@ -1,7 +1,5 @@
 package at.gepardec.demo.wstrans.impl;
 
-import static org.junit.Assert.assertEquals;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,24 +30,27 @@ public class EJBWrapper4TransWsBean {
 	private final static Logger timer = LoggerFactory.getLogger(EJBWrapper4TransWsBean.class.getName() + ".timer");
 
     private TransWs transWs;
-    private String url = "http://localhost:8080/test/TransWs";
+    private String URL = "http://localhost:8080/test/TransWs";
 //    private String url = "http://localhost:8180/transws/TransWs";
 
     
     @PostConstruct
     public void init() throws Exception {
-//         	long start = System.currentTimeMillis();
-            transWs = createWebService();
-            // add WS-AT (Atomic Transaction) Handlers
-            @SuppressWarnings("rawtypes")
-			List<Handler> handlers = new ArrayList<>();
-            handlers.add(new JaxWSTxOutboundBridgeHandler());
-            handlers.add(new JaxWSHeaderContextProcessor());
-            ((BindingProvider) transWs).getBinding().setHandlerChain(handlers);
-//    		timer.info("Init Time: " + (System.currentTimeMillis() - start) + "ms");
+ //   	transWs = createTransactionalWs(URL);
     }
 
-    private TransWs createWebService() throws Exception {
+private TransWs createTransactionalWs(String url) throws Exception {
+	TransWs ws = createWebService(url);
+	// add WS-AT (Atomic Transaction) Handlers
+	@SuppressWarnings("rawtypes")
+	List<Handler> handlers = new ArrayList<>();
+	handlers.add(new JaxWSTxOutboundBridgeHandler());
+	handlers.add(new JaxWSHeaderContextProcessor());
+	((BindingProvider) ws).getBinding().setHandlerChain(handlers);
+	return ws;
+}
+
+    private TransWs createWebService(String url) throws Exception {
         URL wsdlLocation = new URL(url + "?wsdl");
         QName qNameService = new QName("http://wstrans.demo.gepardec.at/v1.0", "TransWsBeanService");
         QName qNamePort = new QName("http://wstrans.demo.gepardec.at/v1.0", "TransWsPort");
@@ -57,10 +58,14 @@ public class EJBWrapper4TransWsBean {
     }
     
     
-    public void testCallTransWsOk() throws Exception {
+    public String testCallTransWsOk() throws Exception {
+    	return callWs(URL);
+    } 
+    
+    public String callWs(String url) throws Exception {
     	long start = System.currentTimeMillis();
-    	init();
-//    	transWs = createWebService();
+    	transWs = createTransactionalWs(url);
+//    	transWs = createWebService(url);
 		timer.info("createWebService Time: " + (System.currentTimeMillis() - start) + "ms");
     	start = System.currentTimeMillis();
     	TransWsRequest request = new TransWsRequest();
@@ -69,6 +74,6 @@ public class EJBWrapper4TransWsBean {
     	request.setTraeger("14");
         TransWsResponse response = transWs.testCall(request);
 		timer.info(request.getService() + " Time: " + (System.currentTimeMillis() - start) + "ms");
-        assertEquals("Hello,Hello", new String(response.getBytes()));
+        return new String(response.getBytes());
     } 
 }
