@@ -2,12 +2,10 @@ package com.gepardec.examples.arquillian;
 
 import java.io.PrintStream;
 
-public class Greeter {
-    public void greet(PrintStream to, String name) {
-        to.println(createGreeting(name));
-    }
+public interface Greeter {
 
-    public String createGreeting(String name) {
-        return "Hello, " + name + "!";
-    }
+	public abstract void greet(PrintStream to, String name);
+
+	public abstract String createGreeting(String name);
+
 }

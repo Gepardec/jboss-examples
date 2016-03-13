@@ -1,5 +1,6 @@
 package com.gepardec.examples.arquillian;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -14,19 +15,19 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class GreeterTest {
 
-	@Inject
+	@EJB
 	Greeter greeter;
 
 	@Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-            .addClass(Greeter.class)
+            .addPackage(GreeterEjb.class.getPackage())
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
 	@Test
 	public void should_create_greeting() {
-	    Assert.assertEquals("Hello, Earthling!",
+	    Assert.assertEquals("The EJB greets Earthling!",
 	        greeter.createGreeting("Earthling"));
 	    
 	    greeter.greet(System.out, "Earthling");
