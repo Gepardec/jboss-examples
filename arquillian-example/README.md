@@ -8,4 +8,4 @@ I. Erster Test
     cd jboss-examples/arquillian-example/
     mvn clean test
 
-
+ mvn -s ~/.m2/settings_empty.xml test -Parquillian-jbossas-managed -Dtest=RuleTest
