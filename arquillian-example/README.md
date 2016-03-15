@@ -9,3 +9,5 @@ I. Erster Test
     mvn clean test
 
  mvn -s ~/.m2/settings_empty.xml test -Parquillian-jbossas-managed -Dtest=RuleTest
+
+ mvn -s ~/.m2/settings_empty.xml integration-test -Pit -Parquillian-jbossas-managed

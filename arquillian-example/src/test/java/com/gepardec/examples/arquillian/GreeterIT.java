@@ -9,16 +9,12 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class RuleTest {
+public class GreeterIT {
 
-    @Rule
-    public SimpleTestHandler handler = new SimpleTestHandler();
-    
 	@EJB
 	Greeter greeter;
 
