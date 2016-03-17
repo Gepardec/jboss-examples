@@ -144,12 +144,6 @@
 			</build>
 			<dependencies>
 				<dependency>
-					<groupId>org.jboss.arquillian.junit</groupId>
-					<artifactId>arquillian-junit-container</artifactId>
-					<scope>test</scope>
-				</dependency>
-
-				<dependency>
 					<groupId>org.wildfly</groupId>
 					<artifactId>wildfly-arquillian-container-embedded</artifactId>
 					<version>${arquillian-wildfly-version}</version>
@@ -165,13 +159,8 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>arquillian-jbossas-managed</id>
+			<id>arquillian-wildfly-managed</id>
 			<dependencies>
-				<dependency>
-					<groupId>org.jboss.arquillian.junit</groupId>
-					<artifactId>arquillian-junit-container</artifactId>
-					<scope>test</scope>
-				</dependency>
 				<dependency>
 					<groupId>org.wildfly</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
