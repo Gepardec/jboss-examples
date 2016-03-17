@@ -37,7 +37,7 @@ Aufgabe:
 
 IV. JUnit Rules
 ---------------
-1. Branch `b_arquillian_demo_3` auschecken
+1. Branch `b_arquillian_demo_4` auschecken
 2. Starte WildFly und dann den Test:
     mvn test -Parquillian-wildfly-managed -Dtest=RuleTest
     
@@ -51,7 +51,7 @@ Aufgabe: Ändere die Arquillian-Version von 1.1.4.Final auf 1.1.4.Final (oder 1.
  
 V. Failsave Plugin
 ------------------
-1. Branch `b_arquillian_demo_4` auschecken
+1. Branch `b_arquillian_demo_5` auschecken
 2. Starte WildFly und die Tests:
     mvn clean integration-test -Pit -Parquillian-wildfly-managed
 oder nur einen:
