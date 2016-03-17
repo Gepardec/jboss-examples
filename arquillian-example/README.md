@@ -24,7 +24,7 @@ schlägt fehl.
 
 
 III. Managed JBoss Server
----------------------------------------
+-------------------------
 1. Branch `b_arquillian_demo_3` auschecken
 2. Starte einen WildFly 8.1.0
 3. Ausführen des Projekts mit Profil
@@ -34,3 +34,17 @@ Aufgabe:
     Erstelle in arquillian.xml einen Container, sodass ein Befehl analog zu Folgendem funktioniert:
     mvn -P arquillian-wildfly-managed -Darquillian.launch=wildfly-erhard install
 
+
+IV. JUnit Rules
+---------------
+1. Branch `b_arquillian_demo_3` auschecken
+2. Starte WildFly und dann den Test:
+    mvn -s ~/.m2/settings_empty.xml test -Parquillian-wildfly-managed -Dtest=RuleTest
+    
+Beachte, die Ausgabe
+-- starting: should_create_greeting(com.gepardec.examples.arquillian.RuleTest)
+auf Client- und auf Server-Seite
+
+Aufgabe: Ändere die Arquillian-Version von 1.1.4.Final auf 1.1.4.Final (oder 1.1.5.Final)
+   und beobachte das Ergebnis des Tests.
+   
