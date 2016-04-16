@@ -2,6 +2,7 @@ package com.gepardec.examples.arquillian;
 
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 
 public class SimpleTestHandler extends TestWatcher {
 
@@ -21,6 +22,12 @@ public class SimpleTestHandler extends TestWatcher {
 	protected void starting(Description description) {
 		System.out.println("-- starting: " + description);
 		super.starting(description);
+	}
+
+	@Override
+	public Statement apply(Statement base, Description description) {
+		System.out.println("-- apply Statement: " + description);
+		return super.apply(base, description);
 	}
 
 	
