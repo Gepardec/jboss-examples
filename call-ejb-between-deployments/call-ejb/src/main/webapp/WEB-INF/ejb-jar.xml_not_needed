@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+         version="3.1">
+    <module-name>my-module</module-name>
+    <enterprise-beans>
+    <session>
+    <ejb-name>ConverterBean</ejb-name>
+    <ejb-class>at.gepardec.ejbtest.remote_ejb.ConverterBean</ejb-class>
+    <session-type>Stateless</session-type>
+    <resource-ref>
+        <res-ref-name>java:/services/stringConverter2</res-ref-name>
+        <lookup-name>java:global/my-module/ConverterBean!at.gepardec.ejbtest.remote_ejb.StringConverter</lookup-name>
+    </resource-ref>
+    </session>
+    </enterprise-beans>
+</ejb-jar>
