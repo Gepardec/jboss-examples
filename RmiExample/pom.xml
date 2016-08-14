@@ -30,13 +30,13 @@
             version 2.0.0.Beta1 which is the latest release of the stack. You can actually 
             use this stack with any version of JBoss AS that implements Java EE 6, not 
             just JBoss AS 7! -->
-         <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-web-6.0</artifactId>
-            <version>3.0.3.Final</version>
-            <type>pom</type>
+		<dependency>
+    		<groupId>org.jboss.spec</groupId>
+    		<artifactId>jboss-javaee-7.0</artifactId>
+    		<version>1.0.3.Final</version>
+    		<type>pom</type>
             <scope>import</scope>
-         </dependency>
+		</dependency>
 
          <!-- Test dependencies -->
          <dependency>
