@@ -1,6 +1,6 @@
 let JBOSS_JSON_PORT=$JBOSS_ADMIN_PORT-9
 
-curl="curl  -s --digest -u admin:jboss"
+curl="curl  -s --digest -u admin:admin@123"
 base_url="http://localhost:$JBOSS_JSON_PORT/management"
 
 show() {

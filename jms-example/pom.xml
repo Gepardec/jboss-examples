@@ -13,6 +13,7 @@
 	<modules>
 		<module>jmslistener</module>
 		<module>jmsclient</module>
+		<module>jms-standalone-client</module>
 	</modules>
 
 </project>
