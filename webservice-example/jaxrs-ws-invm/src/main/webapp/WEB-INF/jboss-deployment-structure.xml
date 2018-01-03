@@ -2,7 +2,7 @@
     <deployment>
         <dependencies>
             <module name="org.apache.cxf"/>
-            <module name="at.objectbay.tests.protocols" services="export"/>
+            <module name="at.gepardec.tests.protocols" services="export"/>
         </dependencies>
     </deployment>
 </jboss-deployment-structure>
