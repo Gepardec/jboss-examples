@@ -27,18 +27,8 @@ public class PerfServlet extends HttpServlet {
 
 		response.setContentType("text/html");
 
-		int time = 0;
-		try {
-			time = Integer.parseInt(request.getParameter("time"));
-		} catch (NumberFormatException e) {
-			// I don't care
-		}
-		int count = 1;
-		try {
-			count = Integer.parseInt(request.getParameter("count"));
-		} catch (NumberFormatException e) {
-			// I don't care
-		}
+		int time = getNumberParameter(request, "time", 0);
+		int count = getNumberParameter(request, "count", 1);
 		String function = request.getParameter("function");
 
 		PrintWriter out = response.getWriter();
@@ -72,6 +62,15 @@ public class PerfServlet extends HttpServlet {
 		out.println("End<br/>");
 		out.println("</body>");
 		out.println("</html>");
+	}
+
+	static public int getNumberParameter(HttpServletRequest request, String parameter, int def) {
+		try {
+			def = Integer.parseInt(request.getParameter(parameter));
+		} catch (NumberFormatException e) {
+			// I don't care
+		}
+		return def;
 	}
 
 }

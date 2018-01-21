@@ -1,10 +1,11 @@
 package at.gepardec.tests.ws.jaxrs;
 
+import static at.gepardec.tests.ws.jaxrs.PerfServlet.getNumberParameter;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,8 @@ public class TroubleServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		int count = (short) getNumberParameter(request, "count", 0);
+
 		response.setContentType("text/html");
 
 		PrintWriter out = response.getWriter();
@@ -30,13 +33,10 @@ public class TroubleServlet extends HttpServlet {
 		out.println("Start<br/>");
 		out.println(new Date().toString() + "<br/>");
 
-		int count = -1;
-		int limit = -1;
+		Compute compute = new Compute(10);
+		compute.compute(count);
 
-		while (--count < limit) {
-			log.debug("Counter: " + count + " Limit: " + limit);
-		}
-
+		out.println("Result: " + compute.result() + "<br/>");
 		out.println("End<br/>");
 		out.println("</body>");
 		out.println("</html>");
