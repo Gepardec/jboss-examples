@@ -11,6 +11,7 @@
 	Start on <% out.println(new Date().toString() );%> <br/>
 	<a href="rest/books">Alle Bücher</a><br/>
 	<a href="rest/book/002">Buch ISBN=002</a><br/>
+	<a href="trouble">Troubleshooting Beispiel</a><br/>
 	Ende <br />
 </body>
 </html>

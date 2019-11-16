@@ -1,1 +1,1 @@
-cp standalone-amq580.xml $JBOSS_HOME/standalone/configuration/standalone.xml
+cp  $JBOSS_HOME/standalone/configuration/standalone-full.xml  $JBOSS_HOME/standalone/configuration/standalone.xml

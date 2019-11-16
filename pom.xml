@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>at.gepardec</groupId>
+	<artifactId>jboss-examples-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>JBoss Examples</name>
+	<url>http://www.gepardec.com</url>
+
+	<modules>
+		<module>RmiExample</module>
+		<module>arquillian-example</module>
+		<module>call-ejb-between-deployments</module>
+		<module>camel-hornetq</module>
+		<module>ejb2cdi-example</module>
+		<module>jms-example</module>
+		<module>jndi-example</module>
+		<module>mbeans-example</module>
+		<module>remote-eap5-tests</module>
+		<module>webservice-example</module>
+		<module>ws-trans</module>
+	</modules>
+</project>

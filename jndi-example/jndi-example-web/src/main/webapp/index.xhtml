@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>Testen von JNDI-Namen</h1>
+
+      <p>Geben Sie einen JNDI-Namen ein und rufen Sie das Service auf.</p> 
+
+	  <h:form>
+		Jndi-Name:<h:inputText value="#{lookupService.jndiName}"/><br/>
+		Return:<h:outputText value="#{lookupService.value}" /><br/>
+		<h:commandButton action="#{lookupService.call}" value="Call" />		
+	  </h:form>
+	  Folgende Resource-Links sind im EJB-Modul definiert.
+	  <pre>
+@Resources( {
+    @Resource(name="java:/MyEJB1", lookup="java:app/jndi-example-ejb/MyService!at.gepardec.demo.jndi_example.Hello"),
+    @Resource(name="java:jboss/MyEJB2", lookup="java:app/jndi-example-ejb/MyService!at.gepardec.demo.jndi_example.Hello"),
+    @Resource(name="java:jboss/exported/MyEJB3", lookup="java:app/jndi-example-ejb/MyService!at.gepardec.demo.jndi_example.Hello")
+})
+	  </pre>
+   </ui:define>
+</ui:composition>

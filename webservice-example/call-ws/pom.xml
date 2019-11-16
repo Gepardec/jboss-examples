@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <parent>
-    <groupId>at.objectbay.tests.ws</groupId>
+    <groupId>at.gepardec.tests.ws</groupId>
     <artifactId>webservice-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>

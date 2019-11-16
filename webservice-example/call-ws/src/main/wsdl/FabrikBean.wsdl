@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="FabrikBeanService" targetNamespace="http://soap.ws.tests.objectbay.at/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soap.ws.tests.objectbay.at/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="FabrikBeanService" targetNamespace="http://soap.ws.tests.gepardec.at/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soap.ws.tests.gepardec.at/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://soap.ws.tests.objectbay.at/" version="1.0" xmlns:tns="http://soap.ws.tests.objectbay.at/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://soap.ws.tests.gepardec.at/" version="1.0" xmlns:tns="http://soap.ws.tests.gepardec.at/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 <xs:element name="getPerson" type="tns:getPerson"/>
 <xs:element name="getPersonResponse" type="tns:getPersonResponse"/>
 <xs:complexType name="getPerson">
