@@ -15,5 +15,31 @@
 		<module>jmsclient</module>
 		<module>jms-standalone-client</module>
 	</modules>
-
+<!--
+     <repositories>
+          <repository>
+               <id>jboss-enterprise-maven-repository</id>
+               <url>https://maven.repository.redhat.com/ga/</url>
+               <releases>
+                    <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                    <enabled>false</enabled>
+               </snapshots>
+          </repository>
+          <repository>
+               <id>jboss-public-repository</id>
+               <name>JBoss Public</name>
+               <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+               <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+               </releases>
+               <snapshots>
+                    <enabled>false</enabled>
+                    <updatePolicy>daily</updatePolicy>
+               </snapshots>
+          </repository>
+     </repositories>
+-->
 </project>

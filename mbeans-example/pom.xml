@@ -31,13 +31,13 @@
     <dependency>
     	<groupId>org.jboss.spec.javax.ejb</groupId>
     	<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-    	<version>1.0.2.Final-redhat-2</version>
+    	<version>1.0.2.Final</version>
     	<scope>provided</scope>
     </dependency>
     <dependency>
     	<groupId>org.jboss.logging</groupId>
     	<artifactId>jboss-logging</artifactId>
-    	<version>3.1.2.GA-redhat-1</version>
+    	<version>3.4.1.Final</version>
     	<scope>provided</scope>
     </dependency>
   </dependencies>

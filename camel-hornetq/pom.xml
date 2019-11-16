@@ -20,13 +20,13 @@
     <dependency>
       <groupId>org.jboss.as</groupId>
       <artifactId>jboss-as-ejb-client-bom</artifactId>
-      <version>7.3.0.Final-redhat-14</version>
+      <version>7.2.0.Final</version>
       <type>pom</type>
     </dependency>
     <dependency>
       <groupId>org.jboss.as</groupId>
       <artifactId>jboss-as-jms-client-bom</artifactId>
-      <version>7.3.0.Final-redhat-14</version>
+      <version>7.2.0.Final</version>
       <type>pom</type>
     </dependency>
     <dependency>
