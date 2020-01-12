@@ -1,0 +1,4 @@
+# If you use digest behind a reverse proxy tat changes the URL validation of
+# the header won't work with some Wildfly versions
+# see https://github.com/wildfly/wildfly/commit/493dc1c86fc0d9945718a4169f73df3f49652d51
+/system-property=jboss.security.validate-digest-url:add(value=false)
