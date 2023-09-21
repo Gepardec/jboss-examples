@@ -3,15 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<name>Logging Example</name>
-	<groupId>at.gepardec.tests</groupId>
-	<artifactId>servlet-with-logging</artifactId>
-	<version>1.2.0</version>
+
+	<name>Structured Logging Demo</name>
+    <groupId>org.gepardec</groupId>
+    <artifactId>structured-logging-demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
 	<packaging>war</packaging>
 	
 	<properties>
-	    <maven.compiler.source>1.8</maven.compiler.source>
-	    <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
         <version.wildfly.bom>28.0.1.Final</version.wildfly.bom>
 	</properties>
 	<build>
@@ -42,10 +47,10 @@
 			<artifactId>jakarta.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+		    <groupId>org.gepardec</groupId>
+		    <artifactId>structured-logging</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 </project>
