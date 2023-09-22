@@ -1,2 +1,3 @@
 FROM quay.io/wildfly/wildfly:27.0.1.Final-jdk17
 COPY target/structured-logging-demo-*.war /opt/jboss/wildfly/standalone/deployments/
+COPY standalone.xml /opt/jboss/wildfly/standalone/configuration/
