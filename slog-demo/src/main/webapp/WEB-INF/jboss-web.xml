@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<jboss-web>
+    <context-root>structured-logging-demo</context-root>
+</jboss-web>
