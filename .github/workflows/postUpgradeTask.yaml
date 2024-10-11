@@ -1,0 +1,58 @@
+name: PostUpgradeTask
+
+on:
+  workflow_dispatch:
+  pull_request_target:
+    types: [ opened, reopened ]
+    branches:
+      - 'main'
+
+jobs:
+  postupgradetask:
+    if: ${{ startsWith(github.head_ref, 'renovate/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo github.head_ref
+        run: echo ${{ github.head_ref }}
+
+      - name: Parse branch name
+        id: parse
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          echo "GROUPID=$(echo $BRANCH | cut -d'/' -f2 | cut -d'-' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: echo parsed values
+        env:
+          GROUPID: ${{ steps.parse.outputs.GROUPID }}
+        run: echo "groupId=${GROUPID}"
+
+      - uses: actions/checkout@v3
+        name: checkout
+        with:
+          ref: main
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Upgrade
+        env:
+          NEW_VERSION: ${{ steps.parse.outputs.NEW_VERSION }}
+        run: |
+          ls -al
+          java --version
+          echo "TODO: call openrewrite recipe"
+
+#      - name: Create Pull Request
+#        uses: peter-evans/create-pull-request@v6
+#        with:
+#          token: ${{ secrets.RENOVATE_TOKEN }}
+#          title: Upgrade quarkus from ${{ steps.parse.outputs.CURR_VERSION }} to ${{ steps.parse.outputs.NEW_VERSION }}
+#          branch: postupgradetask/${{ steps.parse.outputs.DEPNAME }}_${{ steps.parse.outputs.CURR_VERSION }}_${{ steps.parse.outputs.NEW_VERSION }}
+#          base: main
+#          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+#          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+#          body: |
+#            Upgrade quarkus version
