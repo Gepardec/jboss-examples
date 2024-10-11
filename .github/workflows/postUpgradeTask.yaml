@@ -2,13 +2,14 @@ name: PostUpgradeTask
 
 on:
   workflow_dispatch:
-  push:
+  pull_request_target:
+    types: [ opened, reopened ]
     branches:
-      - 'renovate/**'
+      - 'master'
 
 jobs:
   postupgradetask:
-    # if: ${{ startsWith(github.head_ref, 'renovate/') }}
+    if: ${{ startsWith(github.head_ref, 'renovate/') }}
     runs-on: ubuntu-latest
     steps:
       - name: Echo github.head_ref
