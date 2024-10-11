@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v3
         name: checkout
         with:
-          ref: main
+          ref: master
 
       - uses: actions/setup-java@v4
         with:
@@ -51,7 +51,7 @@ jobs:
 #          token: ${{ secrets.RENOVATE_TOKEN }}
 #          title: Upgrade quarkus from ${{ steps.parse.outputs.CURR_VERSION }} to ${{ steps.parse.outputs.NEW_VERSION }}
 #          branch: postupgradetask/${{ steps.parse.outputs.DEPNAME }}_${{ steps.parse.outputs.CURR_VERSION }}_${{ steps.parse.outputs.NEW_VERSION }}
-#          base: main
+#          base: master
 #          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
 #          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
 #          body: |
