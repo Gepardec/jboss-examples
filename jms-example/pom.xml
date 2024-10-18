@@ -10,6 +10,12 @@
 	<name>JMS-Tests</name>
 	<url>http://www.objectbay.com</url>
 
+	<parent>
+		<groupId>at.gepardec</groupId>
+		<artifactId>jboss-examples-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
 	<modules>
 		<module>jmslistener</module>
 		<module>jmsclient</module>
