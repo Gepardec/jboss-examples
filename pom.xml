@@ -1,41 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>at.gepardec</groupId>
-	<artifactId>jboss-examples-parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>JBoss Examples</name>
-	<url>http://www.gepardec.com</url>
+    <groupId>at.gepardec</groupId>
+    <artifactId>jboss-examples-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>JBoss Examples</name>
+    <url>http://www.gepardec.com</url>
 
-	<modules>
-		<module>RmiExample</module>
-		<!--module>arquillian-example</module-->
-		<!--module>call-ejb-between-deployments</module-->
-		<module>camel-hornetq</module>
-		<!--module>ejb2cdi-example</module-->
-		<module>jms-example</module>
-		<!--module>jndi-example</module-->
-		<!--module>mbeans-example</module-->
-		<!--module>remote-eap5-tests</module-->
-		<!--module>webservice-example</module-->
-		<!--module>ws-trans</module-->
-	</modules>
+    <modules>
+        <module>RmiExample</module>
+        <!--module>arquillian-example</module-->
+        <!--module>call-ejb-between-deployments</module-->
+        <module>camel-hornetq</module>
+        <!--module>ejb2cdi-example</module-->
+        <module>jms-example</module>
+        <!--module>jndi-example</module-->
+        <!--module>mbeans-example</module-->
+        <!--module>remote-eap5-tests</module-->
+        <!--module>webservice-example</module-->
+        <!--module>ws-trans</module-->
+    </modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.gepardec</groupId>
-			<artifactId>write-open-rewrite</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/Gepardec/write-open-rewrite</url>
-		</repository>
-	</repositories>
+    <profiles>
+        <profile>
+            <id>openrewrite</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openrewrite.maven</groupId>
+                        <artifactId>rewrite-maven-plugin</artifactId>
+                        <version>5.29.0</version>
+                        <configuration>
+                            <activeRecipes>
+                                <recipe>${recipe}</recipe>
+                            </activeRecipes>
+                            <skipMavenParsing>true</skipMavenParsing>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.gepardec</groupId>
+                                <artifactId>write-open-rewrite</artifactId>
+                                <version>1.0.1-SNAPSHOT</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+            <repositories>
+                <repository>
+                    <id>rewrite-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </repository>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/Gepardec/write-open-rewrite</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>rewrite-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
 </project>
