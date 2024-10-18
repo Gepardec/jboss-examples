@@ -23,4 +23,19 @@
 		<!--module>webservice-example</module-->
 		<!--module>ws-trans</module-->
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.gepardec</groupId>
+			<artifactId>write-open-rewrite</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/Gepardec/write-open-rewrite</url>
+		</repository>
+	</repositories>
 </project>
