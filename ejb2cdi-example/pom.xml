@@ -28,7 +28,7 @@
     <version.org.jboss.resteasy.jaxrs>2.2.1.GA</version.org.jboss.resteasy.jaxrs>
     <version.org.jboss.resteasy.mobile>1.0.0</version.org.jboss.resteasy.mobile>
     <version.org.jboss.spec.javax.jms>1.0.0.Final</version.org.jboss.spec.javax.jms>
-    <version.junit>4.8.2</version.junit>
+    <version.junit>4.13.2</version.junit>
   </properties>
 
   <dependencyManagement>
