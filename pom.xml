@@ -12,15 +12,15 @@
 
 	<modules>
 		<module>RmiExample</module>
-		<module>arquillian-example</module>
-		<module>call-ejb-between-deployments</module>
+		<!--module>arquillian-example</module-->
+		<!--module>call-ejb-between-deployments</module-->
 		<module>camel-hornetq</module>
-		<module>ejb2cdi-example</module>
+		<!--module>ejb2cdi-example</module-->
 		<module>jms-example</module>
-		<module>jndi-example</module>
-		<module>mbeans-example</module>
-		<module>remote-eap5-tests</module>
-		<module>webservice-example</module>
-		<module>ws-trans</module>
+		<!--module>jndi-example</module-->
+		<!--module>mbeans-example</module-->
+		<!--module>remote-eap5-tests</module-->
+		<!--module>webservice-example</module-->
+		<!--module>ws-trans</module-->
 	</modules>
 </project>
