@@ -11,6 +11,12 @@
   <name>ActiveMQ embedded with Camel</name>
   <url>http://www.myorganization.org</url>
 
+  <parent>
+    <groupId>at.gepardec</groupId>
+    <artifactId>jboss-examples-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
