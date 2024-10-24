@@ -32,15 +32,19 @@
                     <plugin>
                         <groupId>org.openrewrite.maven</groupId>
                         <artifactId>rewrite-maven-plugin</artifactId>
-                        <version>5.29.0</version>
+                        <version>5.43.0</version>
                         <configuration>
                             <activeRecipes>
                                 <recipe>${recipe}</recipe>
                             </activeRecipes>
-                            <skipMavenParsing>true</skipMavenParsing>
                         </configuration>
                         <dependencies>
-                            <dependency>
+                           <dependency>
+                             <groupId>org.openrewrite.recipe</groupId>
+                             <artifactId>rewrite-java-dependencies</artifactId>
+                             <version>1.21.0</version>
+                           </dependency>
+                           <dependency>
                                 <groupId>com.gepardec</groupId>
                                 <artifactId>write-open-rewrite</artifactId>
                                 <version>1.0.1-SNAPSHOT</version>
@@ -49,23 +53,10 @@
                     </plugin>
                 </plugins>
             </build>
-            <repositories>
-                <repository>
-                    <id>rewrite-snapshots</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </repository>
-                <repository>
-                    <id>github</id>
-                    <url>https://maven.pkg.github.com/Gepardec/write-open-rewrite</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>rewrite-snapshots</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/Gepardec/write-open-rewrite</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
