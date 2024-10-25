@@ -47,6 +47,7 @@ jobs:
           java --version
           mvn --version
           echo "TODO: call openrewrite recipe"
+          mvn rewrite:run -Drecipe=com.gepardec.update.${GROUPID} -Popenrewrite
 
 #      - name: Create Pull Request
 #        uses: peter-evans/create-pull-request@v6
