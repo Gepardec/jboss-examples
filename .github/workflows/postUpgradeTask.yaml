@@ -42,6 +42,8 @@ jobs:
       - name: Upgrade
         env:
           NEW_VERSION: ${{ steps.parse.outputs.NEW_VERSION }}
+          GITHUB_USER: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ls -al
           java --version
