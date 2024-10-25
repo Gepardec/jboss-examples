@@ -21,6 +21,7 @@ jobs:
           BRANCH: ${{ github.head_ref }}
         run: |
           echo "GROUPID=$(echo $BRANCH | cut -d'/' -f2 | cut -d'-' -f1)" >> "$GITHUB_OUTPUT"
+          echo "GROUPID=${GROUPID^}
 
       - name: echo parsed values
         env:
@@ -43,6 +44,7 @@ jobs:
         run: |
           ls -al
           java --version
+          mvn --version
           echo "TODO: call openrewrite recipe"
 
 #      - name: Create Pull Request
