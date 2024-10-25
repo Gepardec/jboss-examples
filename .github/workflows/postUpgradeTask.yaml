@@ -20,9 +20,10 @@ jobs:
         env:
           BRANCH: ${{ github.head_ref }}
         run: |
-          echo "GROUPID=$(echo $BRANCH | cut -d'/' -f2 | cut -d'-' -f1)" >> "$GITHUB_OUTPUT"
-          echo "GROUPID=${GROUPID^}"
-
+          GROUPID=$(echo $BRANCH | cut -d'/' -f2 | cut -d'-' -f1)
+          GROUPID=$(echo "${GROUPID^}")
+          echo "GROUPID=$GROUPID" >> "$GITHUB_OUTPUT"
+          
       - name: echo parsed values
         env:
           GROUPID: ${{ steps.parse.outputs.GROUPID }}
