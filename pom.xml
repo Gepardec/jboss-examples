@@ -40,11 +40,6 @@
                         </configuration>
                         <dependencies>
                            <dependency>
-                             <groupId>org.openrewrite.recipe</groupId>
-                             <artifactId>rewrite-java-dependencies</artifactId>
-                             <version>1.21.0</version>
-                           </dependency>
-                           <dependency>
                                 <groupId>com.gepardec</groupId>
                                 <artifactId>write-open-rewrite</artifactId>
                                 <version>1.0.1-SNAPSHOT</version>
