@@ -44,6 +44,7 @@ jobs:
           NEW_VERSION: ${{ steps.parse.outputs.NEW_VERSION }}
           GITHUB_USER: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GROUPID: ${{ steps.parse.outputs.GROUPID }}
         run: |
           ls -al
           java --version
