@@ -1,6 +1,6 @@
 package examples.tools;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class MyLogger {
     static Logger log = Logger.getLogger(MyLogger.class);
