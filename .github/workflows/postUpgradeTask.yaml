@@ -21,8 +21,10 @@ jobs:
           BRANCH: ${{ github.head_ref }}
         run: |
           GROUPID=$(echo $BRANCH | cut -d'/' -f2 | cut -d'-' -f1)
+          NEW_BRANCH=$(echo $BRANCH | cut -d'/' -f2 )
           GROUPID=$(echo "${GROUPID^}")
           echo "GROUPID=$GROUPID" >> "$GITHUB_OUTPUT"
+          echo "NEW_BRANCH=$NEW_BRANCH" >> "$GITHUB_OUTPUT"
           
       - name: echo parsed values
         env:
@@ -41,7 +43,6 @@ jobs:
 
       - name: Upgrade
         env:
-          NEW_VERSION: ${{ steps.parse.outputs.NEW_VERSION }}
           GITHUB_USER: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GROUPID: ${{ steps.parse.outputs.GROUPID }}
@@ -52,14 +53,14 @@ jobs:
           echo "TODO: call openrewrite recipe"
           mvn rewrite:run -Drecipe=com.gepardec.update.${GROUPID} -Popenrewrite -s .m2/settings.xml
 
-#      - name: Create Pull Request
-#        uses: peter-evans/create-pull-request@v6
-#        with:
-#          token: ${{ secrets.RENOVATE_TOKEN }}
-#          title: Upgrade quarkus from ${{ steps.parse.outputs.CURR_VERSION }} to ${{ steps.parse.outputs.NEW_VERSION }}
-#          branch: postupgradetask/${{ steps.parse.outputs.DEPNAME }}_${{ steps.parse.outputs.CURR_VERSION }}_${{ steps.parse.outputs.NEW_VERSION }}
-#          base: master
-#          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-#          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-#          body: |
-#            Upgrade quarkus version
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+          title: Upgrade from ${{ steps.parse.outputs.GROUPID }}
+          branch: autoupdate/${{ steps.parse.outputs.NEW_BRANCH }}
+          base: master
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          body: |
+            Upgrade from ${{ steps.parse.outputs.NEW_BRANCH }}
