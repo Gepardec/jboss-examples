@@ -57,7 +57,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.RENOVATE_TOKEN }}
-          title: Upgrade from ${{ steps.parse.outputs.GROUPID }}
+          title: Autoupdate ${{ steps.parse.outputs.GROUPID }}
           branch: autoupdate/${{ steps.parse.outputs.NEW_BRANCH }}
           base: master
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
