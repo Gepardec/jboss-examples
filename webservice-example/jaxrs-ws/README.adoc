@@ -1,0 +1,3 @@
+= Source Code Moved
+
+The source code has been moved to https://github.com/Gepardec/TroubleshootingWorkshop/tree/main/Uebungen/BlockExample/jaxrs-ws[Troubleshooting Workshop] and only what is needed for the workshop has been kept.
